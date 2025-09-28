@@ -1,0 +1,14 @@
+.input {
+  gap: 3px;
+  width: 100%;
+  label {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  input {
+    background-color: #242424;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+  }
+}
