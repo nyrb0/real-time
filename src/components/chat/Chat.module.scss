@@ -1,18 +1,14 @@
 .chat {
-  background-color: #333030;
+  background-color: #414141;
   border-radius: 5px;
   width: 1000px;
-  height: 90vh;
-  //   padding: 10px;
-
+  height: 100vh;
   .header {
     background-color: #242424;
-    border-radius: 5px;
     padding: 10px;
-    // border: 1px solid #fff;
+    cursor: pointer;
     .avatar {
       gap: 10px;
-
       img {
         width: 50px;
         height: 50px;
@@ -26,18 +22,44 @@
     overflow-y: scroll;
     box-sizing: border-box;
     padding: 0 10px;
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #1e1e1e;
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #4a90e2;
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #357ab8;
+    }
   }
   form {
-    padding: 10px;
     background: #242424;
     border-top: 1px solid #fff;
+    input {
+      padding: 20px 10px;
+      width: 100%;
+    }
+    button {
+      width: auto;
+    }
+  }
+  .backChat {
+    cursor: pointer;
+    object-fit: contain;
+    width: 50px;
+    height: 50px;
+    padding-left: 10px;
+    padding-top: 10px;
   }
 }
-
 .messages {
   max-width: 100%;
 }
-
 .message {
   display: flex;
   flex-direction: column;
@@ -52,28 +74,24 @@
   font-size: 14px;
   line-height: 1.4;
 }
-
 .me {
   align-self: flex-end;
   background: #4a90e2;
   color: #fff;
   border-bottom-right-radius: 4px;
 }
-
 .user {
   align-self: flex-start;
   background: #2f2f2f;
   color: #f1f1f1;
   border-bottom-left-radius: 4px;
 }
-
 .name {
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 4px;
   opacity: 0.8;
 }
-
 .text {
   font-size: 14px;
 }

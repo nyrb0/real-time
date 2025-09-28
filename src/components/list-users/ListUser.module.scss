@@ -1,0 +1,28 @@
+.list {
+  padding: 20px;
+  h3 {
+    text-align: center;
+  }
+  .user {
+    padding: 20px;
+    background-color: #242424;
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: scale 0.3s ease;
+    &:hover {
+      scale: 0.991;
+    }
+    img {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+  }
+
+  .left {
+    margin-top: 20px;
+    background-color: red;
+    color: #fff;
+    width: 200px;
+  }
+}
