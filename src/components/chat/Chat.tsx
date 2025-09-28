@@ -8,7 +8,7 @@ import Button from "../../UI/button/Button";
 import ListUsers from "../list-users/ListUsers";
 import type { IParamsChannel, IUserMessageData } from "../../types";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://real-time-backend-k7no.onrender.com/");
 
 const FormInput = ({ params }: { params: IParamsChannel }) => {
   const [message, setMessage] = useState("");

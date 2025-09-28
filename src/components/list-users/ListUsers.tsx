@@ -5,7 +5,7 @@ import io from "socket.io-client";
 import { useNavigate } from "react-router-dom";
 import type { IParamsChannel } from "../../types";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://real-time-backend-k7no.onrender.com/");
 
 interface IListUsers {
   params: { room: string; name: string };
