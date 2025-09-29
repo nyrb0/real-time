@@ -6,7 +6,9 @@
     font-weight: 600;
   }
   input {
-    background-color: #242424;
+    background-color: rgba(102, 102, 102, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 5px;
     border-radius: 5px;
     font-size: 16px;

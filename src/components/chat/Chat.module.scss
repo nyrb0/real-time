@@ -1,11 +1,14 @@
 .chat {
-  background-color: #414141;
-  border-radius: 5px;
-  width: 1000px;
+  width: 100vw;
   height: 100vh;
+
   .header {
-    background-color: #242424;
-    padding: 10px;
+    background-color: rgba(102, 102, 102, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    margin: 10px 5px 0 5px;
+    border-radius: 8px;
+    padding: 15px;
     cursor: pointer;
     .avatar {
       gap: 10px;
@@ -23,25 +26,23 @@
     box-sizing: border-box;
     padding: 0 10px;
     &::-webkit-scrollbar {
-      width: 8px;
+      width: 3px;
     }
     &::-webkit-scrollbar-track {
-      background: #1e1e1e;
+      background: transparent;
       border-radius: 4px;
     }
     &::-webkit-scrollbar-thumb {
       background: #4a90e2;
-      border-radius: 4px;
+      border-radius: 3px;
     }
     &::-webkit-scrollbar-thumb:hover {
       background: #357ab8;
     }
   }
   form {
-    background: #242424;
-    border-top: 1px solid #fff;
     input {
-      padding: 20px 10px;
+      padding: 15px 10px;
       width: 100%;
     }
     button {

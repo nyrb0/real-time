@@ -7,18 +7,21 @@ import Messages from "./Messages";
 import Button from "../../UI/button/Button";
 import ListUsers from "../list-users/ListUsers";
 import type { IParamsChannel, IUserMessageData } from "../../types";
+import { Helmet } from "react-helmet-async";
 
 const socket = io("https://real-time-backend-k7no.onrender.com/");
 
 const FormInput = ({ params }: { params: IParamsChannel }) => {
   const [message, setMessage] = useState("");
 
+  // send message for all
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!message) return;
     socket.emit("sendMessage", { message, params });
     setMessage("");
   };
+
   return (
     <form onSubmit={handleSendMessage} className="df">
       <Input
@@ -40,7 +43,6 @@ const Chat = () => {
   const { search } = useLocation();
   const [params, setParams] = useState<IParamsChannel | null>(null);
   const [usersMessages, setUsersMessages] = useState<IUserMessageData[]>([]);
-  console.log("usermessaf", usersMessages);
   const [isOpenList, setIsOpenList] = useState(false);
   const [countUsers, setCountUsers] = useState(0);
   const navigate = useNavigate();
@@ -76,40 +78,47 @@ const Chat = () => {
   }, []);
 
   return (
-    <div className="df jcc" style={{ height: "100vh" }}>
-      <div className={`${styles.chat} df fdc`}>
-        <header
-          className={`${styles.header} df jcsb aic`}
-          onClick={() => setIsOpenList(true)}
-        >
-          <div className={`${styles.avatar} df aic`}>
-            <img
-              src="https://www.iconpacks.net/icons/1/free-user-group-icon-296-thumb.png"
-              alt=""
-            />
-            <h2>{params?.room}</h2>
-          </div>
-          <p>{countUsers} участников</p>
-        </header>
+    <>
+      <Helmet>
+        <title>{`${params?.room} | RealTime`}</title>
+      </Helmet>
+      <div className="df jcc" style={{ height: "100vh" }}>
+        <div className={`${styles.chat} df fdc`}>
+          <header
+            className={`${styles.header} df jcsb aic`}
+            onClick={() => setIsOpenList(true)}
+          >
+            <div className={`${styles.avatar} df aic`}>
+              <img
+                src="https://thumbs.dreamstime.com/b/profile-icon-member-society-group-avatar-flat-vector-illustration-profile-icon-member-society-group-avatar-103902365.jpg"
+                alt=""
+              />
+              <h2>{params?.room}</h2>
+            </div>
+            <p>
+              {countUsers} {countUsers === 0 ? "участник" : "участников"}
+            </p>
+          </header>
 
-        {isOpenList ? (
-          <>
-            <img
-              onClick={() => setIsOpenList(false)}
-              className={styles.backChat}
-              src="https://cdn-icons-png.flaticon.com/512/9196/9196401.png"
-              alt=""
-            />
-            <ListUsers params={params!} />
-          </>
-        ) : (
-          <>
-            <Messages messages={usersMessages} name={params?.name || ""} />
-            <FormInput params={params!} />
-          </>
-        )}
+          {isOpenList ? (
+            <>
+              <img
+                onClick={() => setIsOpenList(false)}
+                className={styles.backChat}
+                src="https://cdn-icons-png.flaticon.com/512/9196/9196401.png"
+                alt=""
+              />
+              <ListUsers params={params!} />
+            </>
+          ) : (
+            <>
+              <Messages messages={usersMessages} name={params?.name || ""} />
+              <FormInput params={params!} />
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
