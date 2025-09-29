@@ -7,7 +7,6 @@ import Messages from "./Messages";
 import Button from "../../UI/button/Button";
 import ListUsers from "../list-users/ListUsers";
 import type { IParamsChannel, IUserMessageData } from "../../types";
-import { Helmet } from "react-helmet-async";
 
 const socket = io("https://real-time-backend-k7no.onrender.com/");
 
@@ -58,6 +57,8 @@ const Chat = () => {
 
   // event sockets
   useEffect(() => {
+    document.title = `${params?.room} | RealTime`;
+
     socket.on("message", ({ data }: { data: IUserMessageData }) => {
       setUsersMessages((message) => [...message, data]);
     });
@@ -78,47 +79,42 @@ const Chat = () => {
   }, []);
 
   return (
-    <>
-      <Helmet>
-        <title>{`${params?.room} | RealTime`}</title>
-      </Helmet>
-      <div className="df jcc" style={{ height: "100vh" }}>
-        <div className={`${styles.chat} df fdc`}>
-          <header
-            className={`${styles.header} df jcsb aic`}
-            onClick={() => setIsOpenList(true)}
-          >
-            <div className={`${styles.avatar} df aic`}>
-              <img
-                src="https://thumbs.dreamstime.com/b/profile-icon-member-society-group-avatar-flat-vector-illustration-profile-icon-member-society-group-avatar-103902365.jpg"
-                alt=""
-              />
-              <h2>{params?.room}</h2>
-            </div>
-            <p>
-              {countUsers} {countUsers === 0 ? "участник" : "участников"}
-            </p>
-          </header>
+    <div className="df jcc" style={{ height: "100vh" }}>
+      <div className={`${styles.chat} df fdc`}>
+        <header
+          className={`${styles.header} df jcsb aic`}
+          onClick={() => setIsOpenList(true)}
+        >
+          <div className={`${styles.avatar} df aic`}>
+            <img
+              src="https://thumbs.dreamstime.com/b/profile-icon-member-society-group-avatar-flat-vector-illustration-profile-icon-member-society-group-avatar-103902365.jpg"
+              alt=""
+            />
+            <h2>{params?.room}</h2>
+          </div>
+          <p>
+            {countUsers} {countUsers === 0 ? "участник" : "участников"}
+          </p>
+        </header>
 
-          {isOpenList ? (
-            <>
-              <img
-                onClick={() => setIsOpenList(false)}
-                className={styles.backChat}
-                src="https://cdn-icons-png.flaticon.com/512/9196/9196401.png"
-                alt=""
-              />
-              <ListUsers params={params!} />
-            </>
-          ) : (
-            <>
-              <Messages messages={usersMessages} name={params?.name || ""} />
-              <FormInput params={params!} />
-            </>
-          )}
-        </div>
+        {isOpenList ? (
+          <>
+            <img
+              onClick={() => setIsOpenList(false)}
+              className={styles.backChat}
+              src="https://cdn-icons-png.flaticon.com/512/9196/9196401.png"
+              alt=""
+            />
+            <ListUsers params={params!} />
+          </>
+        ) : (
+          <>
+            <Messages messages={usersMessages} name={params?.name || ""} />
+            <FormInput params={params!} />
+          </>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
